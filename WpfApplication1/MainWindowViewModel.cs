@@ -11,7 +11,6 @@ namespace WpfApplication1
 	{
 		private Person _person;
 		private string _selectedItem = "test";
-		private readonly string Sel;
 
 		public string FirstName
 		{
@@ -98,7 +97,7 @@ namespace WpfApplication1
 		{
 			if (RequiredFieldsNotEmpty(_person))
 			{
-				MessageBox.Show(string.Format("Saved data.\nFirst Name: {0}\nLast Name: {1}!\nAdress: {2}\nPhone Number: {3}", _person.FirstName, _person.LastName, _person.Adress, _person.PhoneNumber), "Success!");
+				//MessageBox.Show(string.Format("Saved data.\nFirst Name: {0}\nLast Name: {1}!\nAdress: {2}\nPhone Number: {3}", _person.FirstName, _person.LastName, _person.Adress, _person.PhoneNumber), "Success!");
 				SavePerson(_person);
 			}
 			else
