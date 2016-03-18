@@ -71,6 +71,10 @@ namespace WpfApplication1
 			PeopleCollection = new ObservableCollection<Person>();
 			_person = new Person("Adam", "Kowalski", "Klonowa 1", "600-600-600");
 			PeopleCollection.Add(_person);
+			_person = new Person("Adam2", "Kowalski", "Klonowa 1", "600-600-600");
+			PeopleCollection.Add(_person);
+			_person = new Person("Adam3", "Kowalski", "Klonowa 1", "600-600-600");
+			PeopleCollection.Add(_person);
 			_submitDataCommand = new RelayCommand(SubmitDataExecute, CanSubmitData);
 		}
 
