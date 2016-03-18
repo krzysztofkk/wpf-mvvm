@@ -30,7 +30,7 @@
         <TextBox x:Name="Adress" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="100,120,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="SelectedItemLabel" Content="selected item" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="270,90,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="SelectedItem" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="270,120,0,0" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="SubmitData" Content="Submit" Command="{Binding SubmitData}" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="100,205,0,0" VerticalAlignment="Top" Width="290" RenderTransformOrigin="0.518,-0.145"/>
+        <Button x:Name="SubmitData" Content="Submit" Command="{Binding SubmitDataCommand}" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="100,205,0,0" VerticalAlignment="Top" Width="290" RenderTransformOrigin="0.518,-0.145"/>
 
     </Grid>
 </Window>

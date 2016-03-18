@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace WpfApplication1
 {
@@ -11,6 +9,7 @@ namespace WpfApplication1
 	{
 		private Person _person;
 		private string _selectedItem = "test";
+		private readonly RelayCommand _submitDataCommand;
 
 		public string FirstName
 		{
@@ -52,7 +51,7 @@ namespace WpfApplication1
 			}
 		}
 
-		public ObservableCollection<Person> PeopleCollection { get; set; } = new ObservableCollection<Person>();
+		public ObservableCollection<Person> PeopleCollection { get; set; }
 
 		public string SelectedItem
 		{
@@ -67,6 +66,14 @@ namespace WpfApplication1
 			}
 		}
 
+		public MainWindowViewModel()
+		{
+			PeopleCollection = new ObservableCollection<Person>();
+			_person = new Person("Adam", "Kowalski", "Klonowa 1", "600-600-600");
+			PeopleCollection.Add(_person);
+			_submitDataCommand = new RelayCommand(SubmitDataExecute, CanSubmitData);
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -79,17 +86,11 @@ namespace WpfApplication1
 			}
 		}
 
-		public MainWindowViewModel()
-		{
-			_person = new Person("Adam", "Kowalski", "Klonowa 1", "600-600-600");
-			PeopleCollection.Add(_person);
-		}
-
-		public ICommand SubmitData
+		public ICommand SubmitDataCommand
 		{
 			get
 			{
-				return new RelayCommand(SubmitDataExecute, CanSubmitDataExcute);
+				return _submitDataCommand;
 			}
 		}
 
@@ -112,7 +113,7 @@ namespace WpfApplication1
 			OnPropertyChanged("SelectedItem");
 		}
 
-		private bool CanSubmitDataExcute()
+		private bool CanSubmitData()
 		{
 			return true;
 		}
