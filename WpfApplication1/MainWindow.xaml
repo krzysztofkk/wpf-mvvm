@@ -1,20 +1,20 @@
 ﻿<Window x:Class="WpfApplication1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApplication1"
-        mc:Ignorable="d"
-        Title="WPF" Height="400" Width="650" Background="Beige">
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:WpfApplication1"
+		mc:Ignorable="d"
+		Title="WPF" Height="400" Width="650" Background="Beige">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="281*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="ListBox" SelectedItem="{Binding SelectedItem}" Margin="10,10,490,10" Background="Khaki" Grid.ColumnSpan="2" ItemsSource="{Binding PeopleCollection, Mode=TwoWay}">
+        <ListBox x:Name="ListBox" Background="Khaki" ItemsSource="{Binding PeopleCollection}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding FirstName}"/>
@@ -22,15 +22,19 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Label x:Name="FirstNameLabel" Content="first name" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="100,10,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="FirstName"  Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="100,40,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="LastNameLabel" Content="second name" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="270,10,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="LastName" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="270,40,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="AdressLabel" Content="adress" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="100,90,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Adress" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="100,120,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="SelectedItemLabel" Content="selected item" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="270,90,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="SelectedItem" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="270,120,0,0" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="SubmitData" Content="Submit" Command="{Binding SubmitData}" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="100,205,0,0" VerticalAlignment="Top" Width="290" RenderTransformOrigin="0.518,-0.145"/>
+        <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" DataContext="{Binding Path=SelectedItem, ElementName=ListBox, Mode=OneWay}">
+                <Label x:Name="FirstNameLabel" Content="first name" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox x:Name="FirstName"  Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding FirstName}" Width="120"/>
+                <Label x:Name="LastNameLabel" Content="second name" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox x:Name="LastName" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding LastName}" Width="120"/>
+                <Label x:Name="AdressLabel" Content="adress" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox x:Name="Adress" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Adress}" Width="120"/>
+                <Label x:Name="PhoneNumberLabel" Content="phone number" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox x:Name="PhoneNumber" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <Button x:Name="AddEmptyElement" Content="Add new element" Command="{Binding AddEmptyElementCommand}" Grid.Column="1" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="290" />
+        </StackPanel>
 
     </Grid>
 </Window>

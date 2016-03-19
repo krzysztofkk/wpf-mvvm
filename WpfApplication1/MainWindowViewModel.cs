@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace WpfApplication1
 {
 	class MainWindowViewModel : INotifyPropertyChanged
 	{
 		private Person _person;
-		private string _selectedItem = "test";
+		private readonly RelayCommand _addEmptyElementCommand;
 
 		public string FirstName
 		{
@@ -52,23 +49,17 @@ namespace WpfApplication1
 			}
 		}
 
-		public ObservableCollection<Person> PeopleCollection { get; set; } = new ObservableCollection<Person>();
+		public ObservableCollection<Person> PeopleCollection { get; set; }
 
-		public string SelectedItem
+		public SelectedItem SelectedItem { get; set; }
+
+		public MainWindowViewModel()
 		{
-			get
-			{
-				return _selectedItem;
-			}
-			set
-			{
-				_selectedItem = value;
-				OnPropertyChanged("SelectedItem");
-			}
+			_addEmptyElementCommand = new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);
+			PeopleCollection = new ObservableCollection<Person>();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
-
 
 		private void OnPropertyChanged(string propertyName)
 		{
@@ -79,47 +70,23 @@ namespace WpfApplication1
 			}
 		}
 
-		public MainWindowViewModel()
+		public ICommand AddEmptyElementCommand => _addEmptyElementCommand;
+
+		private void AddEmptyElementExecute()
 		{
-			_person = new Person("Adam", "Kowalski", "Klonowa 1", "600-600-600");
-			PeopleCollection.Add(_person);
+			_person = new Person("EMPTY");
+			AddPerson(_person);
+			//MessageBox.Show("New EMPTY element added to the list!", "List Updated");
 		}
 
-		public ICommand SubmitData
+		private void AddPerson(Person person)
 		{
-			get
-			{
-				return new RelayCommand(SubmitDataExecute, CanSubmitDataExcute);
-			}
+			PeopleCollection.Add(person);
 		}
 
-		private void SubmitDataExecute()
-		{
-			if (RequiredFieldsNotEmpty(_person))
-			{
-				//MessageBox.Show(string.Format("Saved data.\nFirst Name: {0}\nLast Name: {1}!\nAdress: {2}\nPhone Number: {3}", _person.FirstName, _person.LastName, _person.Adress, _person.PhoneNumber), "Success!");
-				SavePerson(_person);
-			}
-			else
-			{
-				MessageBox.Show("Please fill in all of the fields.", "Error!");
-			}
-		}
-
-		private void SavePerson(Person _person)
-		{
-			PeopleCollection.Add(_person);
-			OnPropertyChanged("SelectedItem");
-		}
-
-		private bool CanSubmitDataExcute()
+		private bool CanAddEmptyElement()
 		{
 			return true;
-		}
-
-		private bool RequiredFieldsNotEmpty(Person _person)
-		{
-			return FirstName != null && LastName != null;
 		}
 
 	}
