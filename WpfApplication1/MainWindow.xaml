@@ -34,6 +34,7 @@
                 <TextBox Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
             <Button Content="Add new element" Command="{Binding AddEmptyElementCommand}" Grid.Column="1" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="290" />
+            <Button Content="save to file" Command="{Binding SaveToFileCommand}" Grid.Column="1" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="290" />
         </StackPanel>
 
     </Grid>

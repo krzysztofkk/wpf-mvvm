@@ -8,6 +8,7 @@ namespace WpfApplication1
 	{
 		private Person _person;
 		private readonly RelayCommand _addEmptyElementCommand;
+		private readonly RelayCommand _saveToFileCommand;
 
 		public ObservableCollection<Person> PeopleCollection { get; set; }
 
@@ -16,6 +17,7 @@ namespace WpfApplication1
 		public MainWindowViewModel()
 		{
 			_addEmptyElementCommand = new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);
+			_saveToFileCommand = new RelayCommand(SaveToFileExecute, CanSaveToFile);
 			PeopleCollection = new ObservableCollection<Person>();
 		}
 
@@ -31,6 +33,7 @@ namespace WpfApplication1
 		}
 
 		public ICommand AddEmptyElementCommand => _addEmptyElementCommand;
+		public ICommand SaveToFileCommand => _saveToFileCommand;
 
 		private void AddEmptyElementExecute()
 		{
@@ -45,6 +48,17 @@ namespace WpfApplication1
 		}
 
 		private bool CanAddEmptyElement()
+		{
+			return true;
+		}
+
+		private void SaveToFileExecute()
+		{
+			var persistenceModule = new ListPersistenceModule(PeopleCollection);
+			persistenceModule.SaveToFile();
+		}
+
+		private bool CanSaveToFile()
 		{
 			return true;
 		}
