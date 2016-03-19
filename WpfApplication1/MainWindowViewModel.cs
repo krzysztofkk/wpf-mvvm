@@ -7,9 +7,9 @@ namespace WpfApplication1
 	class MainWindowViewModel : INotifyPropertyChanged
 	{
 		private Person _person;
-		private readonly RelayCommand _addEmptyElement;
-		private readonly RelayCommand _saveToFile;
-		private readonly RelayCommand _readFile;
+		private readonly RelayCommand _addEmptyElementCommand;
+		private readonly RelayCommand _saveToFileCommand;
+		private readonly RelayCommand _readFileCommand;
 		private ListPersistenceModule _listPersistenceModule;
 
 		public ObservableCollection<Person> PeopleCollection { get; set; }
@@ -18,9 +18,9 @@ namespace WpfApplication1
 
 		public MainWindowViewModel()
 		{
-			_addEmptyElement = new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);
-			_saveToFile = new RelayCommand(SaveToFileExecute, CanSaveToFile);
-			_readFile = new RelayCommand(ReadFileExecute, CanReadFile);
+			_addEmptyElementCommand = new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);
+			_saveToFileCommand = new RelayCommand(SaveToFileExecute, CanSaveToFile);
+			_readFileCommand = new RelayCommand(ReadFileExecute, CanReadFile);
 			PeopleCollection = new ObservableCollection<Person>();
 			_listPersistenceModule = new ListPersistenceModule(PeopleCollection);
 			AddEmptyElementExecute();
@@ -37,9 +37,9 @@ namespace WpfApplication1
 			}
 		}
 
-		public ICommand AddEmptyElement { get { return new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);} }
-		public ICommand SaveToFile { get { return new RelayCommand(SaveToFileExecute, CanSaveToFile);} }
-		public ICommand ReadFile { get { return new RelayCommand(ReadFileExecute, CanReadFile);} }
+		public ICommand AddEmptyElementCommand { get { return new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);} }
+		public ICommand SaveToFileCommand { get { return new RelayCommand(SaveToFileExecute, CanSaveToFile);} }
+		public ICommand ReadFileCommand { get { return new RelayCommand(ReadFileExecute, CanReadFile);} }
 
 		private void AddEmptyElementExecute()
 		{
