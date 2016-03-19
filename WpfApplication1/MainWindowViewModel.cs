@@ -12,13 +12,14 @@ namespace WpfApplication1
 
 		public ObservableCollection<Person> PeopleCollection { get; set; }
 
-		public SelectedItem SelectedItem { get; set; }
+		public Person SelectedItem { get; set; }
 
 		public MainWindowViewModel()
 		{
 			_addEmptyElementCommand = new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);
 			_saveToFileCommand = new RelayCommand(SaveToFileExecute, CanSaveToFile);
 			PeopleCollection = new ObservableCollection<Person>();
+			AddEmptyElementExecute();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -40,6 +41,7 @@ namespace WpfApplication1
 			_person = new Person("EMPTY");
 			AddPerson(_person);
 			//MessageBox.Show("New EMPTY element added to the list!", "List Updated");
+			OnPropertyChanged("SelectedItem");
 		}
 
 		private void AddPerson(Person person)
@@ -55,7 +57,7 @@ namespace WpfApplication1
 		private void SaveToFileExecute()
 		{
 			var persistenceModule = new ListPersistenceModule(PeopleCollection);
-			persistenceModule.SaveToFile();
+			persistenceModule.SaveToJson();
 		}
 
 		private bool CanSaveToFile()

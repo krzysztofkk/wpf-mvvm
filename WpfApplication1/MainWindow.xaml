@@ -14,7 +14,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="ListBox" Background="Khaki" ItemsSource="{Binding PeopleCollection}">
+        <ListBox x:Name="ListBox" IsSynchronizedWithCurrentItem="True" Background="Khaki" ItemsSource="{Binding PeopleCollection}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding FirstName}"/>

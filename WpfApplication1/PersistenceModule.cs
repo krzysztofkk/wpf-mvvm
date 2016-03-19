@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Windows;
 using Newtonsoft.Json;
 
 namespace WpfApplication1
@@ -34,6 +36,14 @@ namespace WpfApplication1
 		public void SaveToFile()
 		{
 			System.IO.File.WriteAllText(_path, _peopleCollectionSerialized);
+			MessageBox.Show(string.Format("Succesfully saved list to text file {0}", _path), "List saved!");
+		}
+
+		public void SaveToJson()
+		{
+			string json = JsonConvert.SerializeObject(_peopleCollection, Formatting.Indented);
+			File.WriteAllText(_path, json);
+			MessageBox.Show(string.Format("Succesfully saved list to JSON file {0}", _path), "List saved!");
 		}
 
 
