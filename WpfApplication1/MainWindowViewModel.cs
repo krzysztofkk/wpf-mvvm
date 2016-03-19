@@ -9,46 +9,6 @@ namespace WpfApplication1
 		private Person _person;
 		private readonly RelayCommand _addEmptyElementCommand;
 
-		public string FirstName
-		{
-			get { return _person.FirstName; }
-			set
-			{
-				_person.FirstName = value;
-				OnPropertyChanged("FirstName");
-			}
-		}
-
-		public string LastName
-		{
-			get { return _person.LastName; }
-			set
-			{
-				_person.LastName = value;
-				OnPropertyChanged("LastName");
-			}
-		}
-
-		public string Adress
-		{
-			get { return _person.Adress; }
-			set
-			{
-				_person.Adress = value;
-				OnPropertyChanged("Adress");
-			}
-		}
-
-		public string PhoneNumber
-		{
-			get { return _person.PhoneNumber; }
-			set
-			{
-				_person.PhoneNumber = value;
-				OnPropertyChanged("PhoneNumber");
-			}
-		}
-
 		public ObservableCollection<Person> PeopleCollection { get; set; }
 
 		public SelectedItem SelectedItem { get; set; }
