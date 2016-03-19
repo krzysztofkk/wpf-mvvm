@@ -24,16 +24,16 @@
 
         <StackPanel Grid.Column="1">
             <StackPanel Grid.Column="1" DataContext="{Binding Path=SelectedItem, ElementName=ListBox, Mode=OneWay}">
-                <Label x:Name="FirstNameLabel" Content="first name" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
-                <TextBox x:Name="FirstName"  Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding FirstName}" Width="120"/>
-                <Label x:Name="LastNameLabel" Content="second name" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
-                <TextBox x:Name="LastName" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding LastName}" Width="120"/>
-                <Label x:Name="AdressLabel" Content="adress" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
-                <TextBox x:Name="Adress" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Adress}" Width="120"/>
-                <Label x:Name="PhoneNumberLabel" Content="phone number" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
-                <TextBox x:Name="PhoneNumber" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="120"/>
+                <Label Content="first name" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding FirstName}" Width="120"/>
+                <Label Content="second name" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding LastName}" Width="120"/>
+                <Label Content="adress" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Adress}" Width="120"/>
+                <Label Content="phone number" Grid.Column="1" HorizontalAlignment="Left" Width="120"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
-            <Button x:Name="AddEmptyElement" Content="Add new element" Command="{Binding AddEmptyElementCommand}" Grid.Column="1" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="290" />
+            <Button Content="Add new element" Command="{Binding AddEmptyElementCommand}" Grid.Column="1" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="290" />
         </StackPanel>
 
     </Grid>
