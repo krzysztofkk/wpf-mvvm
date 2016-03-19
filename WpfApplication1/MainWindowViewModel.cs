@@ -9,6 +9,8 @@ namespace WpfApplication1
 		private Person _person;
 		private readonly RelayCommand _addEmptyElementCommand;
 		private readonly RelayCommand _saveToFileCommand;
+		private readonly RelayCommand _readFileCommand;
+		private ListPersistenceModule _listPersistenceModule;
 
 		public ObservableCollection<Person> PeopleCollection { get; set; }
 
@@ -18,7 +20,9 @@ namespace WpfApplication1
 		{
 			_addEmptyElementCommand = new RelayCommand(AddEmptyElementExecute, CanAddEmptyElement);
 			_saveToFileCommand = new RelayCommand(SaveToFileExecute, CanSaveToFile);
+			_readFileCommand = new RelayCommand(ReadFileExecute, CanReadFile);
 			PeopleCollection = new ObservableCollection<Person>();
+			_listPersistenceModule = new ListPersistenceModule(PeopleCollection);
 			AddEmptyElementExecute();
 		}
 
@@ -35,6 +39,7 @@ namespace WpfApplication1
 
 		public ICommand AddEmptyElementCommand => _addEmptyElementCommand;
 		public ICommand SaveToFileCommand => _saveToFileCommand;
+		public ICommand ReadFileCommand => _readFileCommand;
 
 		private void AddEmptyElementExecute()
 		{
@@ -56,11 +61,21 @@ namespace WpfApplication1
 
 		private void SaveToFileExecute()
 		{
-			var persistenceModule = new ListPersistenceModule(PeopleCollection);
-			persistenceModule.SaveToJson();
+			_listPersistenceModule.SaveToJson();
 		}
 
 		private bool CanSaveToFile()
+		{
+			return true;
+		}
+
+		private void ReadFileExecute()
+		{
+			PeopleCollection = _listPersistenceModule.ReadFile();
+			OnPropertyChanged("SelectedItem");
+		}
+
+		private bool CanReadFile()
 		{
 			return true;
 		}

@@ -8,7 +8,7 @@ namespace WpfApplication1
 {
 	class ListPersistenceModule
 	{
-		private readonly ObservableCollection<Person> _peopleCollection;
+		private ObservableCollection<Person> _peopleCollection;
 		private string _peopleCollectionSerialized;
 		private readonly string _path = @"T:\file2.json";
 
@@ -33,7 +33,7 @@ namespace WpfApplication1
 			_peopleCollectionSerialized = JsonConvert.SerializeObject(_peopleCollection.ToArray(), Formatting.Indented);
 		}
 
-		public void SaveToFile()
+		public void SaveToText()
 		{
 			System.IO.File.WriteAllText(_path, _peopleCollectionSerialized);
 			MessageBox.Show(string.Format("Succesfully saved list to text file {0}", _path), "List saved!");
@@ -45,6 +45,14 @@ namespace WpfApplication1
 			File.WriteAllText(_path, json);
 			MessageBox.Show(string.Format("Succesfully saved list to JSON file {0}", _path), "List saved!");
 		}
+
+
+		public ObservableCollection<Person> ReadFile()
+		{
+			MessageBox.Show("collection read from json");
+			return JsonConvert.DeserializeObject<ObservableCollection<Person>>(File.ReadAllText(_path));
+
+		} 
 
 
 	}
