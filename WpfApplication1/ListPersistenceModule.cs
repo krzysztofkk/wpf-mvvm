@@ -25,7 +25,7 @@ namespace WpfApplication1
 
 		public void CreateFile()
 		{
-			System.IO.File.Create(_path);
+			File.Create(_path);
 		}
 
 		public void Serialize()
@@ -35,7 +35,7 @@ namespace WpfApplication1
 
 		public void SaveToText()
 		{
-			System.IO.File.WriteAllText(_path, _peopleCollectionSerialized);
+			File.WriteAllText(_path, _peopleCollectionSerialized);
 			MessageBox.Show(string.Format("Succesfully saved list to text file {0}", _path), "List saved!");
 		}
 
@@ -50,7 +50,8 @@ namespace WpfApplication1
 		public ObservableCollection<Person> ReadFile()
 		{
 			MessageBox.Show("collection read from json");
-			return JsonConvert.DeserializeObject<ObservableCollection<Person>>(File.ReadAllText(_path));
+			_peopleCollection = JsonConvert.DeserializeObject<ObservableCollection<Person>>(File.ReadAllText(_path));
+			return _peopleCollection;
 
 		} 
 

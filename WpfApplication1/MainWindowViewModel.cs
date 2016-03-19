@@ -14,7 +14,7 @@ namespace WpfApplication1
 
 		public ObservableCollection<Person> PeopleCollection { get; set; }
 
-		public Person SelectedItem { get; set; }
+		public SelectedItem SelectedItem { get; set; }
 
 		public MainWindowViewModel()
 		{
